@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audio_books",
+  "info": {
+    "singularName": "audio-book",
+    "pluralName": "audio-books",
+    "displayName": "audio-book",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "release_date": {
+      "type": "date"
+    },
+    "minutes": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "inversedBy": "audio_books"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "audio_books"
+    }
+  }
+}

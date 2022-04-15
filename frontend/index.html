@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookDucks</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./img/favicon.png"/>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/c2f741d9f2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to BookDucks!</h1>
+      <nav class="login-panel">
+        <button id="toggle-login-btn">Log In</button>
+        <div class="login-user hide">
+          <label for="username-login">Enter Email:</label>
+          <input type="email" name="username-login" id="username-login" value="User1@email.com" />
+          <label for="password-login">Enter Password:</label>
+          <input type="password" name="password-login" id="password-login" value="User1111"/>
+          <button id="login-btn">Log in!</button>
+          <br />
+          <button id="toggle-register-btn">Register new user!</button>
+          
+        </div>
+        <div class="register-user hide">
+            <label for="username-register">Enter Username:</label>
+            <input type="text" name="username-register" id="username-register"/>
+            <label for="email-register">Enter Email:</label>
+            <input type="email" name="email-register" id="email-register">
+            <label for="password-register" >Enter Password:</label>
+            <input type="password" minlength="8"
+              name="password-register"
+              id="password-register" />
+            <button id="register-btn">Register user!</button>
+        </div>
+      </nav>
+      <!-- <div class="user-profile ">
+        <i class="fa fa-book"></i>
+      </div> -->
+
+      <div class="header-icons hide">
+        <div class="user">
+            <p class="user-logged-in">Logged in!</p>
+            <i class="fa fa-user"></i>
+            <i class="fa fa-sign-out" onclick="logOut()"></i>
+        </div>
+        <div class="user-profile-popup hide">
+            <h2>User profile</h2>
+            <div class="profile-details">
+            </div>
+            <i class="fa fa-plus"></i>
+            <div class="add-book hide">
+                <label for="book-type">Select type of book</label>
+                <select name="book-type" id="book-type" onchange="">
+                    <option value="">Select</option>
+                    <option value="audio">Audio-Book</option>
+                    <option value="book">Book</option>
+                </select>
+                <div class="book-input hide">
+                    <input type="text" name="book-title" id="book-title" placeholder="Book title" />
+                    <input type="text" name="book-author" id="book-author" placeholder="Author">
+                    <input type="number" name="book-page" id="book-page" placeholder="Enter page count" min="0">
+                    <select name="book-rating" id="book-rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                    <button>Add Book!</button>
+                </div>
+                <div class="audio-input hide">
+                    <input type="text" name="audio-title" id="audio-title" placeholder="Book title" />
+                    <label for="audio-date">Date of release:</label>
+                    <input type="date" name="audio-date" id="audio-date">
+                    <input type="number" name="audio-min" id="audio-min" placeholder="Enter minutes" min="0">
+                    <label for="audio-rating">Rating:</label>
+                    <select name="audio-rating" id="audio-rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                    <button>Add Audio Book!</button>
+                </div>
+              
+            </div>          
+        </div>
+    </div>
+
+
+    </header>
+    <main>
+      <h2>Current stock</h2>
+      <button onclick="renderBooks(); renderAudioBooks();">render books</button>
+      <section>
+        <h3>Books:</h3>
+        <ul class="book-list">
+        </ul>
+      </section>
+      <section>
+        <h3>Audio-Books:</h3>
+        <ul class="audio-book-list"></ul>
+      </section>
+    </main>
+
+    <aside></aside>
+
+    <script src="main.js"></script>
+  </body>
+</html>
