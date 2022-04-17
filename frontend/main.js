@@ -96,19 +96,21 @@ const renderBooks = async () => {
 
     const li = document.createElement("li");
     li.innerHTML = `<h4>${book.attributes.title}</h4>
-        <p>Author: ${book.attributes.author}, page count: ${book.attributes.pages}</p>
-        <p> Genre(s): ${genreString} Rating: ${book.attributes.rating}</p>
+        <div>
         <img src="http://localhost:1337${book.attributes.cover.data.attributes.url}" height="150" width="100" alt="cover-art">
-        <p>Lender: ${book.attributes.user.data.attributes.username}, Email: ${book.attributes.user.data.attributes.email}</p>`;
+        <div>
+        <p>Author: ${book.attributes.author}</p><p>Page count: ${book.attributes.pages}</p>
+        <p> Genre(s): ${genreString}</p> <p>Rating: ${book.attributes.rating}</p>
+        <p>Lender: ${book.attributes.user.data.attributes.username},\n Email: ${book.attributes.user.data.attributes.email}</p></div></div>`;
     bookList.append(li);
   });
   //return bookList
 };
 //render Audiobooks
 const renderAudioBooks = async () => {
+  let books = await getProducts("audio-books");
   let bookList = document.querySelector(".audio-book-list");
   bookList.innerHTML = "";
-  let books = await getProducts("audio-books");
   books.forEach((book) => {
     const li = document.createElement("li");
     let genreString = "";
@@ -116,10 +118,13 @@ const renderAudioBooks = async () => {
       genreString += item.attributes.genre + ", ";
     });
     li.innerHTML = `<h4>${book.attributes.title}</h4>
-        <p>Release date: ${book.attributes.release_date}, duration: ${book.attributes.minutes} min</p>
-        <p> Genre(s): ${genreString} Rating: ${book.attributes.rating}</p>
+        <div>
         <img src="http://localhost:1337${book.attributes.cover.data.attributes.url}" height="150" width="100" alt="cover-art">
-        <p>Lender: ${book.attributes.user.data.attributes.username}, Email: ${book.attributes.user.data.attributes.email}</p></p>`;
+        <div>
+        <p> duration: ${book.attributes.minutes} min</p>
+        <p> Genre(s): ${genreString}</p><p> Rating: ${book.attributes.rating}</p>
+        <p>Release date: ${book.attributes.release_date}</p>
+        <p>Lender: ${book.attributes.user.data.attributes.username}, Email: ${book.attributes.user.data.attributes.email}</p></div></div>`;
     bookList.append(li);
   });
   //return bookList
@@ -142,11 +147,13 @@ const renderProfile = async () => {
 
   books.forEach((book) => {
     if (book.attributes.user.data.id == user.id) {
+      book.type = "book";
       userBooksArr.push(book);
     }
   });
   audioBooks.forEach((book) => {
     if (book.attributes.user.data.id == user.id) {
+      book.type = "audio-book";
       userBooksArr.push(book);
     }
   });
@@ -157,15 +164,25 @@ const renderProfile = async () => {
 <p>Id: ${user.id}</p>
 <p>Registered: ${user.createdAt}</p>`;
   //skriv ut arrrayen
+  document.querySelector(".fa-book").addEventListener("click", ()=>{
+    userLibrary.classList.remove("hide")
+    userLibrary.innerHTML= `<h3>${user.username}'s books:</h3>`
+    userBooksArr.forEach((book) =>{
+      let div = document.createElement("div")
+      div.innerHTML=`<p>${book.attributes.title}</p><p>(${book.type})</p>`
+      userLibrary.append(div)
+    })
+  })
 };
 
 //toggle add book/audiobook
-const addBookIcon = document.querySelector(".plus-sign");
+const addBookIcon = document.querySelector(".fa-plus");
 const addBook = document.querySelector(".add-book");
 const selectBook = document.querySelector("#book-type");
 const bookInput = document.querySelector(".book-input");
 const audioInput = document.querySelector(".audio-input");
 const newBookInput = document.querySelector(".new-book-input");
+const userLibrary = document.querySelector(".user-library")
 
 addBookIcon.addEventListener("click", () => {
   addBook.classList.toggle("hide");
