@@ -15,7 +15,7 @@ let userLoginPage = document.querySelector(".login-user");
 let userRegisterPage = document.querySelector(".register-user");
 document.querySelector("#toggle-login-btn").addEventListener("click", () => {
   document.querySelector(".login-user").classList.toggle("hide");
-  //document.querySelector('.register-user').classList.toggle('hide')
+  document.querySelector('.register-user').classList.add('hide')
 });
 document.querySelector("#toggle-register-btn").addEventListener("click", () => {
   document.querySelector(".register-user").classList.toggle("hide");
@@ -130,7 +130,7 @@ const renderAudioBooks = async () => {
   //return bookList
 };
 //toggle user profile
-document.querySelector(".fa-user").addEventListener("click", () => {
+document.querySelector(".user-icon").addEventListener("click", () => {
   document.querySelector(".user-profile-popup").classList.toggle("hide");
   renderProfile();
 });
@@ -159,24 +159,25 @@ const renderProfile = async () => {
   });
   console.log(userBooksArr);
   let container = document.querySelector(".profile-details");
-  container.innerHTML = `<h3>${user.username}</h3>
+  container.innerHTML = `<div><div><h3><i class="fa fa-user"></i>  ${user.username}</h3>
 <p>Email: ${user.email}</p>
 <p>Id: ${user.id}</p>
-<p>Registered: ${user.createdAt}</p>`;
+<p>Registered: ${user.createdAt}</p></div>`;
   //skriv ut arrrayen
-  document.querySelector(".fa-book").addEventListener("click", ()=>{
+  document.querySelector(".user-library-btn").addEventListener("click", ()=>{
     userLibrary.classList.remove("hide")
+    addBook.classList.add('hide')
     userLibrary.innerHTML= `<h3>${user.username}'s books:</h3>`
     userBooksArr.forEach((book) =>{
       let div = document.createElement("div")
-      div.innerHTML=`<p>${book.attributes.title}</p><p>(${book.type})</p>`
+      div.innerHTML=`<h4>${book.attributes.title}</h4><p>(${book.type})</p>`
       userLibrary.append(div)
     })
   })
 };
 
 //toggle add book/audiobook
-const addBookIcon = document.querySelector(".fa-plus");
+const addBookBtn = document.querySelector(".add-book-btn");
 const addBook = document.querySelector(".add-book");
 const selectBook = document.querySelector("#book-type");
 const bookInput = document.querySelector(".book-input");
@@ -184,8 +185,9 @@ const audioInput = document.querySelector(".audio-input");
 const newBookInput = document.querySelector(".new-book-input");
 const userLibrary = document.querySelector(".user-library")
 
-addBookIcon.addEventListener("click", () => {
+addBookBtn.addEventListener("click", () => {
   addBook.classList.toggle("hide");
+  userLibrary.classList.add('hide')
 });
 
 //toggle input

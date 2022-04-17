@@ -1,76 +1,185 @@
+$header-background: #000;
+$font-color: rgb(49, 255, 30);
+$complement-color: rgb(19, 141, 0);
+
 * {
-    padding: 0;
-    margin: 0;
-    max-width: 100%;
-    //overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-    font-family: 'VT323', monospace;
-    letter-spacing: 1px;
-    }
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  //overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+}
 
-.hide{
-    display:none;
+.hide {
+  display: none;
 }
-h3{
-    font-size: 25px;
+button,
+.button {
+  background-color: #000;
+  background-image: none;
+  border: 1px solid $font-color;
+  border-radius: 4px;
+  box-shadow: $font-color 4px 4px 0 0, #000 4px 4px 0 1px;
+  color: $font-color;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 6px 20px;
+  text-align: center;
+  &:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+  }
 }
-header{
-    background: rgb(116, 228, 155);
-    padding: 20px;
-    position:relative;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    nav{
-        
-    }
+input,
+select,
+input#file-upload-button {
+  background: $header-background;
+  color: $font-color;
+  padding: 2px;
+  border-radius: 3px;
+  border: 1px solid $font-color;
+  font-size: 18px;
+  margin-bottom: 2px;
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
-.fa-user{
-    position: relative;
 }
-.user-profile-popup{
+header {
+  background: $header-background;
+  color: $font-color;
+  padding: 20px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  //border-bottom: 5px solid black;
+  h1 {
+    margin-left: 60px;
+  }
+  img {
     position: absolute;
-    top:100px;
-    right:0px;
-    width: 400px;
-    height: 300px;
-    background: rgb(116, 228, 155);
-    z-index: 1;
-    padding: 0 20px 20px 20px;
-    border-radius: 0 0  0 10px;
+    z-index: 2;
+    left: 20px;
+    top: 15px;
+    height: 45px;
+  }
 }
-.book-list, .audio-book-list{
-    display: flex;
-    flex-wrap: wrap;
-    overflow-wrap: break-word;
-    list-style: none;
+.fa-user {
+  position: relative;
 }
-.book-list li, .audio-book-list li{
-    border-radius: 5px;
-    margin: 10px;
-    padding:15px;
-    background: rgba(255, 255, 255, 0.75);
+.user-profile-popup,
+.login-user,
+.register-user {
+  color: $font-color;
+  position: fixed;
+  top: 75px;
+  right: 0px;
+  width: 400px;
+  min-height: 300px;
+  background: $header-background;
+  z-index: 2;
+  padding: 20px;
+  border-radius: 0 0 0 10px;
+  // border-bottom: 5px solid black;
+  // border-left: 5px solid black;
+  div {
+    margin-bottom: 10px;
+  }
 }
-.book-list li > div, .audio-book-list li > div{
-    display:flex;
+.book-list,
+.audio-book-list {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  list-style: none;
 }
-.book-list li > div > div, .audio-book-list li > div > div{
-    margin-left: 10px;
+.book-list li,
+.audio-book-list li {
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.75);
+}
+.book-list li > div,
+.audio-book-list li > div {
+  display: flex;
+}
+.book-list li > div > div,
+.audio-book-list li > div > div {
+  margin-left: 10px;
 }
 
-body{
-    font-weight: 500;
+body {
+  font-weight: 500;
+  font-size: 20px;
 }
-.fa-plus, .fa-user, .fa-sign-out, .fa-book{
-    cursor: pointer;
+.fa-plus,
+.fa-user,
+.fa-sign-out,
+.fa-book, .fa-arrow-up {
+  cursor: pointer;
+  &:hover{
+      color: $complement-color;
+      //box-shadow: #fff 0 0 0 3px; Få gloria utan påverkan på spacet!!
+  }
 }
-main{
-    background-image: url("../img/background2.jpg");
-    height: 100%;
-    min-height: 100vh;
-    background-size: cover;
+main {
+  background-image: url("../img/background5.jpg");
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+  background-size: cover;
+  color: #000;
+  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+    .wrapper{
+        max-width: 1000px;
+        margin: 20px;
+        h3 {
+          font-size: 25px;
+          background: $header-background;
+          color: $font-color;
+          text-align: center;
+          padding-bottom: 8px;
+           box-shadow: $complement-color 3px 3px 0 0, $complement-color -3px -3px 0 0;
+           margin: 10px 0;
+        }
+    }
 }
-.user-library div{
-    margin-top: 10px;
+.user-library div {
+  margin-top: 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+footer {
+  padding: 20px;
+  bottom: 0px;
+  background: $header-background;
+  color: $font-color;
+  width: 100%;
+  display: flex;
+  div:first-of-type {
+    flex-basis: 60%;
+    & + div{
+        flex-basis: 40%;
+        display: flex;
+        align-items: flex-end;
+        justify-content:space-between;
+        flex-direction: column-reverse;
+    }
+  }
 }
