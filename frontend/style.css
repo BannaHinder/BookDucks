@@ -19,12 +19,12 @@
     padding:10px;
 }
 header{
-    background: rgb(131, 212, 208);
+    background: rgb(116, 228, 155);
     padding: 20px;
 }
 body{
     font-weight: 500;
 }
-.fa-plus, .fa-user, .fa-sign-out{
+.plus-sign, .fa-user, .fa-sign-out{
     cursor: pointer;
 }
