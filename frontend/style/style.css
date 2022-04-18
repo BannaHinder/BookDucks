@@ -10,7 +10,7 @@
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 button,
@@ -58,6 +58,7 @@ select::-webkit-calendar-picker-indicator,
 input#file-upload-button::-webkit-calendar-picker-indicator {
   -webkit-filter: invert(1);
           filter: invert(1);
+  cursor: pointer;
 }
 
 header {
@@ -76,6 +77,9 @@ header {
       -ms-flex-pack: justify;
           justify-content: space-between;
   z-index: 1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header h1 {
@@ -90,6 +94,20 @@ header img {
   height: 45px;
 }
 
+@media (max-width: 680px) {
+  header {
+    height: 100px;
+    margin-bottom: 30px;
+  }
+  header p {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  header span {
+    display: none;
+  }
+}
+
 .fa-user {
   position: relative;
 }
@@ -99,20 +117,69 @@ header img {
 .register-user {
   color: #31ff1e;
   position: fixed;
-  top: 75px;
+  top: 80px;
   right: 0px;
-  width: 400px;
-  min-height: 300px;
+  width: 420px;
+  height: calc( 100vh - 80px);
   background: #000;
-  z-index: 2;
+  z-index: 1;
   padding: 20px;
   border-radius: 0 0 0 10px;
+}
+
+.user-profile-popup .close,
+.login-user .close,
+.register-user .close {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 }
 
 .user-profile-popup div,
 .login-user div,
 .register-user div {
   margin-bottom: 10px;
+}
+
+.user-profile-popup h2,
+.login-user h2,
+.register-user h2 {
+  border-bottom: 1px solid #31ff1e;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+
+.user-profile-popup .profile-details,
+.login-user .profile-details,
+.register-user .profile-details {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 680px) {
+  .user-profile-popup,
+  .login-user,
+  .register-user {
+    top: 100px;
+    width: 100%;
+    min-height: calc( 100vh - 100px);
+    border-top: 5px double #31ff1e;
+  }
+}
+
+.user-profile-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .book-list,
@@ -124,6 +191,9 @@ header img {
       flex-wrap: wrap;
   overflow-wrap: break-word;
   list-style: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .book-list li,
@@ -132,6 +202,18 @@ header img {
   margin: 10px;
   padding: 15px;
   background: rgba(255, 255, 255, 0.75);
+}
+
+@media (min-width: 530px) {
+  .book-list li,
+  .audio-book-list li {
+    min-width: 450px;
+  }
+}
+
+.book-list li h4,
+.audio-book-list li h4 {
+  margin-bottom: 5px;
 }
 
 .book-list li > div,
@@ -152,16 +234,20 @@ body {
 }
 
 .fa-plus,
-.fa-user,
+.user-icon,
 .fa-sign-out,
-.fa-book, .fa-arrow-up {
+.fa-book,
+.fa-arrow-up,
+.fa-times-circle {
   cursor: pointer;
 }
 
 .fa-plus:hover,
-.fa-user:hover,
+.user-icon:hover,
 .fa-sign-out:hover,
-.fa-book:hover, .fa-arrow-up:hover {
+.fa-book:hover,
+.fa-arrow-up:hover,
+.fa-times-circle:hover {
   color: #138d00;
 }
 
@@ -194,6 +280,17 @@ main .wrapper h3 {
   -webkit-box-shadow: #138d00 3px 3px 0 0, #138d00 -3px -3px 0 0;
           box-shadow: #138d00 3px 3px 0 0, #138d00 -3px -3px 0 0;
   margin: 10px 0;
+}
+
+@media (max-width: 680px) {
+  main {
+    margin-top: 100px;
+  }
+}
+
+.user-library {
+  overflow-y: auto;
+  max-height: 50vh;
 }
 
 .user-library div {
@@ -231,9 +328,31 @@ footer div:first-of-type + div {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
+}
+
+@media (min-width: 680px) {
+  footer div:first-of-type + div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 680px) {
+  footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    font-size: 16px;
+  }
+  footer div:last-of-type {
+    margin-top: 15px;
+    -webkit-box-orient: initial;
+    -webkit-box-direction: initial;
+        -ms-flex-direction: initial;
+            flex-direction: initial;
+  }
 }
 /*# sourceMappingURL=style.css.map */

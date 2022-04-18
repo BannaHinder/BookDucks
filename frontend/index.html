@@ -40,6 +40,7 @@
             </div>
         </div>
         <div class="register-user hide">
+          <div><h2>Register new user:</h2></div>
           <div><label for="username-register">Enter Username:</label>
             <input type="text" name="username-register" id="username-register"/></div>
             <div><label for="email-register">Enter Email:</label>
@@ -52,14 +53,17 @@
       <div class="header-icons hide">
         <div class="user">
             <p class="user-logged-in">Logged in!</p>
-            <span>Profile:</span>
-            <i class="fa fa-user user-icon"></i>
+            <div>
+              <span>Profile:</span>
+            <i class="fa fa-user user-icon" onclick="toggleUserProfile()"></i>
             <span>Log out:</span>
             <i class="fa fa-sign-out" onclick="logOut()"></i>
+            </div>
         </div>
       </div>
     </header>
     <div class="user-profile-popup hide">
+      <div class="profile-wrapper">
       <h2>User profile</h2>
       <div class="profile-details">
       </div>
@@ -87,6 +91,8 @@
               <div class="audio-input hide">
                 <label for="audio-date">Date of release:</label>
                 <input type="date" name="audio-date" id="audio-date">
+              </div>
+              <div>
                 <label for="audio-min">Enter length:</label>
                 <input type="number" name="audio-min" id="audio-min" placeholder="Enter minutes" min="0">
               </div>
@@ -98,10 +104,6 @@
                   <option value="4">4</option>
                   <option value="5" selected>5</option>
               </select>
-              <div>
-                <label for="book-cover">Cover image:</label>
-                <input type="file" name="book-cover" id="book-cover" accept=".jpg, .jpeg, .png">
-              </div>
               <div>
                 <p>Genres:</p>
                 <label for="genre1">Romance</label>
@@ -119,9 +121,16 @@
                 <label for="genre7">Drama</label>
                 <input type="checkbox" name="genre" id="genre7" value="7">
               </div>
+              <div>
+                <label for="book-cover" class="button">Browse</label>
+                <span id="file-name">Choose cover image
+                </span><input type="file" name="book-cover" id="book-cover" accept=".jpg, .jpeg, .png" style="visibility: hidden;">                              
+              </div>
               <button onclick="getBook()">Add Book! ♥</button>
           </div>
-      </div>          
+      </div> 
+    </div>
+      <span class="close">Close <i class="fas fa-times-circle" onclick="toggleUserProfile()"></i></span>         
   </div>
     <main>
       <div class="wrapper">
@@ -144,9 +153,9 @@
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga doloribus voluptatum dignissimos repellat ipsam modi ad impedit debitis consectetur, incidunt totam fugit, cupiditate autem vel at suscipit quas quisquam laudantium▝▞</p>
     </div>
     <div>
-      <span>BookDucks <i class="fa fa-copyright"></i></span>
+      <span>BookDucks 2022 <i class="fa fa-copyright"></i></span>
     
-      <span>Go to top <i class="fa fa-arrow-up"></i></span>
+      <span>Go to top <i class="fa fa-arrow-up" onclick="window.scrollTo(0, 0);"></i></span>
     </div>
     </footer>  
     <script src="main.js"></script>

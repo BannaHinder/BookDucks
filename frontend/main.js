@@ -101,7 +101,8 @@ const renderBooks = async () => {
         <div>
         <p>Author: ${book.attributes.author}</p><p>Page count: ${book.attributes.pages}</p>
         <p> Genre(s): ${genreString}</p> <p>Rating: ${book.attributes.rating}</p>
-        <p>Lender: ${book.attributes.user.data.attributes.username},\n Email: ${book.attributes.user.data.attributes.email}</p></div></div>`;
+        <div class="lender-info">
+        <p>Lender: ${book.attributes.user.data.attributes.username}</p><p> Email: ${book.attributes.user.data.attributes.email}</p></div></div></div>`;
     bookList.append(li);
   });
   //return bookList
@@ -124,16 +125,17 @@ const renderAudioBooks = async () => {
         <p> duration: ${book.attributes.minutes} min</p>
         <p> Genre(s): ${genreString}</p><p> Rating: ${book.attributes.rating}</p>
         <p>Release date: ${book.attributes.release_date}</p>
-        <p>Lender: ${book.attributes.user.data.attributes.username}, Email: ${book.attributes.user.data.attributes.email}</p></div></div>`;
+        <div class="lender-info">
+        <p>Lender: ${book.attributes.user.data.attributes.username}</p><p> Email: ${book.attributes.user.data.attributes.email}</p></div></div></div>`;
     bookList.append(li);
   });
   //return bookList
 };
 //toggle user profile
-document.querySelector(".user-icon").addEventListener("click", () => {
+const toggleUserProfile = () =>{
   document.querySelector(".user-profile-popup").classList.toggle("hide");
   renderProfile();
-});
+}
 
 //render user profile ,maybe the user Array should be done simultaneously
 //when logging in so there's not too many fetches when opening user profile??
@@ -269,6 +271,12 @@ const getUserData = async () => {
   return data;
 };
 
+$('#book-cover').bind('change', function() { 
+  var fileName = ''; 
+  fileName = $(this).val().replace(/C:\\fakepath\\/i, '')
+  $('#file-name').html(fileName); })
+
 checkLoginStatus();
+
 window.onbeforeunload = function() {
     return "Dude, are you sure you want to leave? Think of the kittens!";}
