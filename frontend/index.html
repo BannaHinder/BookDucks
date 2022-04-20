@@ -27,9 +27,9 @@
     <header>
       <img src="./img/favicon.png" alt="duck-logo">
       <h1>Welcome to BookDucks!</h1>
-      <nav class="login-panel">
-        <button id="toggle-login-btn">Log In</button>
-        <div class="login-user hide">
+      <button id="toggle-login-btn">Log In</button>
+      <nav class="login-panel hide">
+        <div class="login-user">
           <div><h2>User Login:</h2></div>
           <div><label for="username-login">Enter Email:</label>
             <input type="email" name="username-login" id="username-login" value="User1@email.com" /></div>
@@ -41,13 +41,16 @@
         </div>
         <div class="register-user hide">
           <div><h2>Register new user:</h2></div>
+          <form action="">
           <div><label for="username-register">Enter Username:</label>
-            <input type="text" name="username-register" id="username-register"/></div>
+            <input type="text"  minlength="3" name="username-register" id="username-register" required/></div>
             <div><label for="email-register">Enter Email:</label>
-            <input type="email" name="email-register" id="email-register"></div>
+            <input type="email" name="email-register" id="email-register" required></div>
             <div><label for="password-register" >Enter Password:</label>
-            <input type="password" minlength="8" name="password-register" id="password-register" /></div>
-            <button id="register-btn">Register user!</button>
+            <input type="password" minlength="6" name="password-register" id="password-register" required/></div>
+            <button type="submit" id="register-btn">Register user!</button>
+            
+          </form>
         </div>
       </nav>
       <div class="header-icons hide">
@@ -61,81 +64,84 @@
             </div>
         </div>
       </div>
-    </header>
-    <div class="user-profile-popup hide">
-      <div class="profile-wrapper">
-      <h2>User profile</h2>
-      <div class="profile-details">
-      </div>
-      <div class="profile-menu">
-        <button class="add-book-btn">Add book <i class="fa fa-plus"></i></button>
-        <button class="user-library-btn">View user library <i class="fa fa-book"></i></button>
+      <div class="user-profile-popup hide">
+        <div class="profile-wrapper">
+        <h2>User profile</h2>
+        <div class="profile-details">
         </div>
-      <div class="user-library hide"></div>
-      <div class="add-book hide">
-          <label for="book-type">Select type of book</label>
-          <select name="book-type" id="book-type" onchange="">
-              <option value="">Select</option>
-              <option value="audio-book">Audio-Book</option>
-              <option value="book">Book</option>
-          </select>
-          <div class="new-book-input hide">
-            <label for="book-title">Enter title:</label>
-              <input type="text" name="book-title" id="book-title" placeholder="Book title" />
-              <div class="book-input hide">
-                <label for="book-author">Enter Author:</label>
-                <input type="text" name="book-author" id="book-author" placeholder="Author">
-                <label for="book-page">Enter number of pages:</label>
-                <input type="number" name="book-page" id="book-page" placeholder="Enter page count" min="0">
-              </div>
-              <div class="audio-input hide">
-                <label for="audio-date">Date of release:</label>
-                <input type="date" name="audio-date" id="audio-date">
-              </div>
-              <div>
-                <label for="audio-min">Enter length:</label>
-                <input type="number" name="audio-min" id="audio-min" placeholder="Enter minutes" min="0">
-              </div>
-              <label for="book-rating">Rating:</label>
-              <select name="book-rating" id="book-rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5" selected>5</option>
-              </select>
-              <div>
-                <p>Genres:</p>
-                <label for="genre1">Romance</label>
-                <input type="checkbox" name="genre" id="genre1" value="1">
-                <label for="genre2">Horror</label>
-                <input type="checkbox" name="genre" id="genre2" value="2">
-                <label for="genre3">Sci-fi</label>
-                <input type="checkbox" name="genre" id="genre3" value="3">
-                <label for="genre4">Kids</label>
-                <input type="checkbox" name="genre" id="genre4" value="4">
-                <label for="genre5">Fantasy</label>
-                <input type="checkbox" name="genre" id="genre5" value="5">
-                <label for="genre6">Thriller</label>
-                <input type="checkbox" name="genre" id="genre6" value="6">
-                <label for="genre7">Drama</label>
-                <input type="checkbox" name="genre" id="genre7" value="7">
-              </div>
-              <div>
-                <label for="book-cover" class="button">Browse</label>
-                <span id="file-name">Choose cover image
-                </span><input type="file" name="book-cover" id="book-cover" accept=".jpg, .jpeg, .png" style="visibility: hidden;">                              
-              </div>
-              <button onclick="getBook()">Add Book! ♥</button>
+        <div class="profile-menu">
+          <button class="add-book-btn">Add book <i class="fa fa-plus"></i></button>
+          <button class="user-library-btn">View user library <i class="fa fa-book"></i></button>
           </div>
-      </div> 
+        <div class="user-library hide"></div>
+        <div class="add-book hide">
+            <label for="book-type">Select type of book</label>
+            <select name="book-type" id="book-type" onchange="">
+                <option value="">Select</option>
+                <option value="audio-book">Audio-Book</option>
+                <option value="book">Book</option>
+            </select>
+            <div class="new-book-input hide">
+              <label for="book-title">Enter title:</label>
+                <input type="text" name="book-title" id="book-title" placeholder="Book title" />
+                <div class="book-input hide">
+                  <div><label for="book-author">Enter Author:</label>
+                    <input type="text" name="book-author" id="book-author" placeholder="Author"></div>
+                  <div><label for="book-page">Enter number of pages:</label>
+                    <input type="number" name="book-page" id="book-page" placeholder="Enter page count" min="0"></div>
+                </div>
+                <div class="audio-input hide">
+                  <div><label for="audio-date">Date of release:</label>
+                    <input type="date" name="audio-date" id="audio-date"></div>
+                  <div>
+                    <label for="audio-min">Enter length:</label>
+                    <input type="number" name="audio-min" id="audio-min" placeholder="Enter minutes" min="0">
+                  </div>
+                </div>
+                
+                <label for="book-rating">Rating:</label>
+                <select name="book-rating" id="book-rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                </select>
+                <div>
+                  <p>Genres:</p>
+                  <label for="genre1">Romance</label>
+                  <input type="checkbox" name="genre" id="genre1" value="1">
+                  <label for="genre2">Horror</label>
+                  <input type="checkbox" name="genre" id="genre2" value="2">
+                  <label for="genre3">Sci-fi</label>
+                  <input type="checkbox" name="genre" id="genre3" value="3">
+                  <label for="genre4">Kids</label>
+                  <input type="checkbox" name="genre" id="genre4" value="4">
+                  <label for="genre5">Fantasy</label>
+                  <input type="checkbox" name="genre" id="genre5" value="5">
+                  <label for="genre6">Thriller</label>
+                  <input type="checkbox" name="genre" id="genre6" value="6">
+                  <label for="genre7">Drama</label>
+                  <input type="checkbox" name="genre" id="genre7" value="7">
+                  <label for="genre8">Non-Fiction</label>
+                  <input type="checkbox" name="genre" id="genre8" value="8">
+                </div>
+                <div>
+                  <label for="book-cover" class="button">Browse</label>
+                  <span id="file-name">Choose cover image
+                  </span><input type="file" name="book-cover" id="book-cover" accept=".jpg, .jpeg, .png" style="display:none">                              
+                </div>
+                <button onclick="getBook()">Add Book! ♥</button>
+            </div>
+        </div> 
+      </div>
+        <p class="close">Close <i class="fas fa-times-circle" onclick="toggleUserProfile()"></i></p>         
     </div>
-      <span class="close">Close <i class="fas fa-times-circle" onclick="toggleUserProfile()"></i></span>         
-  </div>
+    </header>
     <main>
       <div class="wrapper">
       <h2>Current stock</h2>
-      <button onclick="renderBooks(); renderAudioBooks();">render books</button>
+      <!-- <button onclick="renderBooks(); renderAudioBooks();">render books</button> -->
       <section>
         <h3>▞ Books: ▚ </h3>
         <ul class="book-list">

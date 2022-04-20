@@ -5,7 +5,6 @@
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "VT323", monospace;
   letter-spacing: 1px;
 }
 
@@ -26,10 +25,11 @@ button,
   display: inline-block;
   font-size: 18px;
   font-weight: 400;
+  font-family: inherit;
   line-height: 20px;
   margin: 0 5px 10px 0;
   overflow: visible;
-  padding: 6px 20px;
+  padding: 8px 20px;
   text-align: center;
 }
 
@@ -44,7 +44,8 @@ button:not([disabled]):active,
 input,
 select,
 input#file-upload-button {
-  background: #000;
+  font-family: inherit;
+  background: #121312;
   color: #31ff1e;
   padding: 2px;
   border-radius: 3px;
@@ -62,7 +63,7 @@ input#file-upload-button::-webkit-calendar-picker-indicator {
 }
 
 header {
-  background: #000;
+  background: #121312;
   color: #31ff1e;
   padding: 20px;
   position: fixed;
@@ -83,7 +84,7 @@ header {
 }
 
 header h1 {
-  margin-left: 60px;
+  margin-left: 70px;
 }
 
 header img {
@@ -99,8 +100,20 @@ header img {
     height: 100px;
     margin-bottom: 30px;
   }
-  header p {
+  header img {
+    top: 25px;
+  }
+  header h1 {
+    font-size: 30px;
+  }
+  header .user p {
     font-size: 14px;
+  }
+  header .user div {
+    font-size: 24px;
+    text-align: right;
+  }
+  header p {
     white-space: nowrap;
   }
   header span {
@@ -113,52 +126,83 @@ header img {
 }
 
 .user-profile-popup,
-.login-user,
-.register-user {
+.login-panel {
   color: #31ff1e;
-  position: fixed;
+  position: absolute;
   top: 80px;
   right: 0px;
-  width: 420px;
-  height: calc( 100vh - 80px);
-  background: #000;
+  width: 460px;
+  min-height: calc( 100vh - 80px);
+  background: #121312;
   z-index: 1;
   padding: 20px;
-  border-radius: 0 0 0 10px;
+}
+
+.user-profile-popup .profile-wrapper,
+.login-panel .profile-wrapper {
+  width: 100%;
+  overflow: auto;
+  height: calc( 100vh - 120px);
+}
+
+.user-profile-popup .profile-wrapper::-webkit-scrollbar,
+.login-panel .profile-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.user-profile-popup .profile-wrapper::-webkit-scrollbar-track,
+.login-panel .profile-wrapper::-webkit-scrollbar-track {
+  background: #1e4a25;
+  border-radius: 10px;
+}
+
+.user-profile-popup .profile-wrapper::-webkit-scrollbar-thumb,
+.login-panel .profile-wrapper::-webkit-scrollbar-thumb {
+  background: #138d00;
+  border-radius: 10px;
+}
+
+.user-profile-popup .profile-wrapper::-webkit-scrollbar-thumb:hover,
+.login-panel .profile-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #06712f;
 }
 
 .user-profile-popup .close,
-.login-user .close,
-.register-user .close {
+.login-panel .close {
   position: fixed;
   right: 20px;
   bottom: 20px;
+  z-index: 3;
+  background: #121312;
+  -webkit-box-shadow: #121312 0 0 0 5px;
+          box-shadow: #121312 0 0 0 5px;
 }
 
 .user-profile-popup div,
-.login-user div,
-.register-user div {
+.login-panel div {
   margin-bottom: 10px;
 }
 
 .user-profile-popup h2,
-.login-user h2,
-.register-user h2 {
+.login-panel h2 {
   border-bottom: 1px solid #31ff1e;
   margin-bottom: 30px;
   display: inline-block;
 }
 
+.user-profile-popup h3,
+.login-panel h3 {
+  margin-bottom: 5px;
+}
+
 .user-profile-popup .profile-details,
-.login-user .profile-details,
-.register-user .profile-details {
+.login-panel .profile-details {
   margin-bottom: 30px;
 }
 
 @media (max-width: 680px) {
   .user-profile-popup,
-  .login-user,
-  .register-user {
+  .login-panel {
     top: 100px;
     width: 100%;
     min-height: calc( 100vh - 100px);
@@ -204,10 +248,18 @@ header img {
   background: rgba(255, 255, 255, 0.75);
 }
 
+.book-list li p,
+.audio-book-list li p {
+  font-size: 14px;
+}
+
 @media (min-width: 530px) {
   .book-list li,
   .audio-book-list li {
     min-width: 450px;
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
   }
 }
 
@@ -231,6 +283,7 @@ header img {
 body {
   font-weight: 500;
   font-size: 20px;
+  font-family: "VT323", monospace;
 }
 
 .fa-plus,
@@ -273,7 +326,7 @@ main .wrapper {
 
 main .wrapper h3 {
   font-size: 25px;
-  background: #000;
+  background: #121312;
   color: #31ff1e;
   text-align: center;
   padding-bottom: 8px;
@@ -303,7 +356,7 @@ main .wrapper h3 {
 footer {
   padding: 20px;
   bottom: 0px;
-  background: #000;
+  background: #121312;
   color: #31ff1e;
   width: 100%;
   display: -webkit-box;

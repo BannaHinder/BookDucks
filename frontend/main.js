@@ -11,15 +11,16 @@
 //etc
 
 //Toggle log-in
-let userLoginPage = document.querySelector(".login-user");
+let userLoginPage = document.querySelector(".login-panel");
 let userRegisterPage = document.querySelector(".register-user");
 document.querySelector("#toggle-login-btn").addEventListener("click", () => {
-  document.querySelector(".login-user").classList.toggle("hide");
-  document.querySelector('.register-user').classList.add('hide')
+  userLoginPage.classList.toggle("hide");
+  document.querySelector(".login-user").classList.remove("hide");
+  userRegisterPage.classList.add('hide')
 });
 document.querySelector("#toggle-register-btn").addEventListener("click", () => {
-  document.querySelector(".register-user").classList.toggle("hide");
-  document.querySelector(".login-user").classList.toggle("hide");
+  userRegisterPage.classList.toggle("hide");
+  document.querySelector(".login-user").classList.add("hide");
 });
 
 //Log-in
@@ -52,27 +53,30 @@ document.querySelector("#register-btn").addEventListener("click", async () => {
     console.log(response);
     sessionStorage.setItem("token", response.data.jwt);
     username = email = password = "";
+    checkLoginStatus()
   } catch (error) {
     console.log(error);
-    username = email = password = "";
+    password = "";
   }
 });
 
 //CHeck if logged in func
 const checkLoginStatus = () => {
   if (sessionStorage.getItem("token")) {
-    document.querySelector(".login-panel").classList.add("hide");
+    userLoginPage.classList.add("hide");
+    document.querySelector("#toggle-login-btn").classList.add("hide")
     document.querySelector(".header-icons").classList.remove("hide");
   }
 };
 //log out user
 const logOut = () => {
   sessionStorage.removeItem("token");
-  document.querySelector(".login-panel").classList.remove("hide");
+  document.querySelector("#toggle-login-btn").classList.remove("hide");
   document.querySelector(".header-icons").classList.add("hide");
-  document.querySelector(".login-user").classList.add("hide");
+  userLoginPage.classList.add("hide");
   document.querySelector(".user-profile-popup").classList.add("hide");
   document.querySelector(".add-book").classList.add("hide");
+  userLibrary.classList.add('hide')
 };
 
 // fetch data
@@ -97,7 +101,7 @@ const renderBooks = async () => {
     const li = document.createElement("li");
     li.innerHTML = `<h4>${book.attributes.title}</h4>
         <div>
-        <img src="http://localhost:1337${book.attributes.cover.data.attributes.url}" height="150" width="100" alt="cover-art">
+        <img src="http://localhost:1337${book.attributes.cover.data.attributes.url}" height="220" width="150" alt="cover-art">
         <div>
         <p>Author: ${book.attributes.author}</p><p>Page count: ${book.attributes.pages}</p>
         <p> Genre(s): ${genreString}</p> <p>Rating: ${book.attributes.rating}</p>
@@ -120,7 +124,7 @@ const renderAudioBooks = async () => {
     });
     li.innerHTML = `<h4>${book.attributes.title}</h4>
         <div>
-        <img src="http://localhost:1337${book.attributes.cover.data.attributes.url}" height="150" width="100" alt="cover-art">
+        <img src="http://localhost:1337${book.attributes.cover.data.attributes.url}" height="220" width="150" alt="cover-art">
         <div>
         <p> duration: ${book.attributes.minutes} min</p>
         <p> Genre(s): ${genreString}</p><p> Rating: ${book.attributes.rating}</p>
@@ -170,11 +174,15 @@ const renderProfile = async () => {
     userLibrary.classList.remove("hide")
     addBook.classList.add('hide')
     userLibrary.innerHTML= `<h3>${user.username}'s books:</h3>`
-    userBooksArr.forEach((book) =>{
-      let div = document.createElement("div")
-      div.innerHTML=`<h4>${book.attributes.title}</h4><p>(${book.type})</p>`
-      userLibrary.append(div)
-    })
+    if(userBooksArr.length==0){
+      userLibrary.innerHTML+= `<p>${user.username} has no books yet.</p>`
+    }else{
+      userBooksArr.forEach((book) =>{
+        let div = document.createElement("div")
+        div.innerHTML=`<h4>${book.attributes.title}</h4><p>(${book.type})</p>`
+        userLibrary.append(div)
+      })
+    }
   })
 };
 
@@ -257,6 +265,7 @@ const getBook = async () => {
     .catch((error) => {
       console.log("something went wrong with file upload");
       console.log(error);
+      alert("Please fill in all the input-fields")
     });
 };
 
@@ -276,7 +285,8 @@ $('#book-cover').bind('change', function() {
   fileName = $(this).val().replace(/C:\\fakepath\\/i, '')
   $('#file-name').html(fileName); })
 
-checkLoginStatus();
 
-window.onbeforeunload = function() {
-    return "Dude, are you sure you want to leave? Think of the kittens!";}
+
+checkLoginStatus();
+renderBooks(); 
+renderAudioBooks();

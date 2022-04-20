@@ -14,20 +14,23 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 1
     },
     "author": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 1
     },
     "pages": {
       "required": true,
-      "type": "integer"
+      "type": "integer",
+      "min": 1
     },
     "cover": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
